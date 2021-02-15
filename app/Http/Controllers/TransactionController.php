@@ -65,6 +65,10 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
+        $this->validate(request(),[
+
+            'amount' => 'required|numeric',
+        ]);
         $data = request()->all();
         $wallet = Wallet::find($id);
         $wallet->balance = $wallet->balance + $data['amount'];

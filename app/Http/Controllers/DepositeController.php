@@ -101,16 +101,22 @@ class DepositeController extends Controller
     
     public function edit($id)
     {  
+        $this->validate(request(),[
+
+            'amountt' => 'required|numeric',
+        ]);
+
+
         $data = request()->all();
         $depoiste= new Deposite();
         
         $wallet = Wallet::find($id);
-        $wallet->balance = $wallet->balance - $data['amount'];
+        $wallet->balance = $wallet->balance - $data['amountt'];
         $wallet->save();
 
         $depoiste->user_id= $wallet->user_id;
         $depoiste->wallet_id= $id;
-        $depoiste->invested= $data['amount'];
+        $depoiste->invested= $data['amountt'];
         $depoiste->percent= 20;
         $depoiste->active= 'open';
         $depoiste->duration = 10;

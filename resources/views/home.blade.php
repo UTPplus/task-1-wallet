@@ -25,6 +25,15 @@
                         </div>
                     @endif
 
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                             @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
                     <form action="transactionWallet/{{$wallet->id}}" method="POST" >
                       @csrf
@@ -62,13 +71,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                             @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
                     <form action="transaction/{{$wallet->id}}" method="POST" >
                       @csrf
                      
                     
-                    <input type="integer" class="form-control" id="amount" name="amount"  placeholder="Enter deposite amount">
+                    <input type="integer" class="form-control" id="" name="amountt"  placeholder="Enter deposite amount">
                     <input type="hidden" name="id" value="{{$wallet->id}}">
                     <p></p>
 
